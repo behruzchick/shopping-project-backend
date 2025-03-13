@@ -5,9 +5,12 @@ RUN apt-get update && apt-get install -y openjdk-17-jdk
 WORKDIR /app
 COPY . .
 
-# Даем права на выполнение gradlew
 RUN chmod +x gradlew
-RUN ./gradlew bootJar --no-daemon
+
+RUN java -version
+RUN ./gradlew --version
+
+RUN ./gradlew clean bootJar --no-daemon
 
 FROM openjdk:17-jdk-slim
 
